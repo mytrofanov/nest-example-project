@@ -30,6 +30,10 @@ export class User extends Model<User, UserCreationAttribute>{
   @Column({type: DataType.STRING, allowNull: true})
   banReason: string;
 
-  @BelongsToMany(()=> Role, ()=> UserRoles)
-  role: Role[];
+  // @ApiProperty({example: 'USER', description: 'role type'})
+  // @Column({type: DataType.STRING, allowNull: true})
+  // roles: string;
+
+  @BelongsToMany(() => Role, () => UserRoles)
+  roles: Role[];
 }
