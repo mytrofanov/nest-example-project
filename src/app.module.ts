@@ -4,6 +4,8 @@ import { UsersModule } from './users/users.module';
 import { ConfigModule } from "@nestjs/config";
 import * as process from 'process';
 import { User } from "./users/users.model";
+import { RolesModule } from './roles/roles.module';
+import { UserRoles } from "./roles/user-roles.model";
 
 @Module({
   controllers: [],
@@ -20,6 +22,6 @@ import { User } from "./users/users.model";
     database: process.env.POSTGRES_DP,
     models: [User],
     autoLoadModels: true,
-  }), UsersModule]
+  }), UsersModule, RolesModule, UserRoles]
 })
 export class AppModule {}
