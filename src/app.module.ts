@@ -8,10 +8,14 @@ import { RolesModule } from './roles/roles.module';
 import { UserRoles } from "./roles/user-roles.model";
 import { Role } from "./roles/roles.model";
 import { AuthModule } from './auth/auth.module';
+import { PostsService } from './posts/posts.service';
+import { PostsController } from './posts/posts.controller';
+import { PostsModule } from './posts/posts.module';
+import { Post } from "./posts/posts.model";
 
 @Module({
-  controllers: [],
-  providers: [],
+  controllers: [PostsController],
+  providers: [PostsService],
   imports: [ConfigModule.forRoot({
     envFilePath: `${process.env.NODE_ENV}.env`
   }),
@@ -22,8 +26,14 @@ import { AuthModule } from './auth/auth.module';
     username: process.env.POSTGRES_USER,
     password: process.env.POSTGRES_PASSWORD,
     database: process.env.POSTGRES_DP,
-    models: [User, Role, UserRoles],
+    models: [User, Role, UserRoles, Post],
     autoLoadModels: true,
-  }), UsersModule, RolesModule, UserRoles, AuthModule]
+  }),
+    UsersModule,
+    RolesModule,
+    UserRoles,
+    AuthModule,
+    PostsModule
+  ]
 })
 export class AppModule {}
